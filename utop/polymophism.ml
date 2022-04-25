@@ -9,7 +9,7 @@ let rec concat = function
   | h :: t -> h ^ concat t
 
 (* sum & concat have the same shape but switch on operators
-  Let's combine elements no matter their type
+   Let's combine elements no matter their type
 *)
 
 let rec combine init op = function

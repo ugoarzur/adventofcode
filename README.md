@@ -2,7 +2,7 @@
 Advent of Code to step-up with OCaml. I aim to build solutions with OCaml.
 
 ## Code
-- The main code is in root.
+- The main code is in root folder.
 - `Out/` is for compilation
 - `utop/` is to test some code
 - `clean.sh` is to clean the repos of generated files.
@@ -31,8 +31,8 @@ You can type `utop` in terminal and try the following commands:
 |--|--|
 |`#use "<filename>.ml";;`|Import the OCaml file content in `utop` to use functions.|
 |`#help;;`|Display all the commands for utop|
-|`#trace;;`|Put a tracker on a function|
-|`#untrace;;`|Remove the tracker you put on a function|
+|`#trace <function>;;`|Put a tracker on a function|
+|`#untrace <function>;;`|Remove the tracker you put on a function|
 |`#quit;;`|Quit `utop` *(shortcut known : `ctrl+d`).*|
 
 ### Merlin
@@ -42,21 +42,27 @@ That is why [Merlin](https://github.com/ocaml/merlin) is for in OCaml ecosystem.
 To install it you will use these following commands:
 ```bash
 opam install merlin
-opam user-setup install
+opam user-setup install # Update the configs
 ```
 Restart your editor and enjoy the hints.
+
+### Auto-indent
+```bash
+opam install ocp-indent # Package to auto-indent OCaml code
+opam user-setup install # Update the configs
+```
 
 ## Compilation
 To compile OCaml code you can use the following command:
 ```bash
-ocamlopt -o ./out/hello day1.ml
+ocamlopt -o ./out/day1 day1.ml
 ```
 This will generate files in `out/`
 ```bash
-hello.cmi # ?
-hello.cmx # ?
-hello.o   # ?
-hello     #You can run your program using ./hello
+day1.cmi # ?
+day1.cmx # ?
+day1.o   # ?
+day1     #You can run your program using ./day1
 ```
 
 ## Cleaning

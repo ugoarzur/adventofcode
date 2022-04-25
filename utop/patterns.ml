@@ -33,7 +33,7 @@ let b =
   https://youtu.be/AkrlDpHN_zE?t=454
 *)
 
-let empty lst = function
+let empty (lst : list) = function
   | [] -> true
   | _ -> false;;
 
@@ -48,21 +48,15 @@ let rec length lst =
   | h :: t -> 1 + length t;;
 
 (* example usage
-  append [1;2;3] [4;5;6] is [1;2;3;4;5;6] *)
+   append [1;2;3] [4;5;6] is [1;2;3;4;5;6] *)
 let rec append lst1 lst2 =
   match lst1 with
   | [] -> lst2
   | h :: t -> h :: (append t lst2);;
 
-
 let fst3 t =
   match t with
   | (a, b, c) -> a;;
-
-let name_with_year s =
-  match s with
-  | {name; year} -> name ^ " is " ^ string_of_int (year mod 100);;
-
 
 let bad_empty lst =
   match lst with
@@ -72,7 +66,7 @@ let bad_empty lst =
 let rec bad_sum lst =
   match lst with
   | [] -> 0
-  | h :: t -> h + sum t
+  | h :: t -> h + bad_sum t
 
 let rec bad_sum' lst =
   List.hd lst + bad_sum' (List.tl lst)

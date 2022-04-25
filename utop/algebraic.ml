@@ -1,7 +1,7 @@
 (* Record or variant ?
-Variant- one-of: A coin could be a penny, nickel, dime or quarter
-Record - each-of: A student who has a name and id number
-Record - each-of: A dessert, wich has a sauce a creamy component and crunchy comp
+   Variant- one-of: A coin could be a penny, nickel, dime or quarter
+   Record - each-of: A student who has a name and id number
+   Record - each-of: A dessert, wich has a sauce a creamy component and crunchy comp
 *)
 
 (* Variant aka tagged union *)
