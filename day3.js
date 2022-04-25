@@ -15,15 +15,16 @@ const diagnosys = [
   "00010",
   "01010"];
 
-const checkAt = (number, index) => number.charAt(index);
 
+// TODO: Aggregate bits from entries
 const aggregate = (diagnosys, index) => diagnosys.reduce((previous,current) => {
-  const char = checkAt(current, index)
+  const char = current.charAt(index)
+  console.log(`fetching the first char ${char} of ${current}`)
   previous.push(char)
   return previous;
 }, [])
 
-// TODO: Aggregate bits
+
 // TODO: Calculate the gamma rate: fetch the first bit of each number and take the most common
 // TODO: Calculate the epsilon rate: fetch the first bit of each number and take the least common
 const counter = (aggregation) => {
@@ -38,16 +39,39 @@ const counter = (aggregation) => {
   return count
 }
 
-const aggregation = aggregate(diagnosys, 1)
-const count = counter(aggregation)
-console.log("count", count)
+const loops = diagnosys[0].length;
+const gamma = []
+const epsilon = []
 
-// diagnosys.forEach((diag) => {
-//   aggregate(diagnosys, index)
-// });
+for (let loop = 0; loop < diagnosys[0].length; loop++) {
+  // const element = diagnosys[loop];
+  console.log('\n== LOOP ', loop)
 
+  const aggregation = aggregate(diagnosys, loop)
+  console.log("aggregation", JSON.stringify(aggregation))
+
+  const count = counter(aggregation)
+  console.log("count", count)
+
+  if (count[0] > count[1]){
+    console.log("|> The most common is 0")
+    gamma.push(0)
+    epsilon.push(1)
+  } else {
+    console.log("|> The least common is 1")
+    gamma.push(1)
+    epsilon.push(0)
+  }
+}
+const finalGammaRate = gamma.toString().replace(/,/ig, "")
+const finalEpsilonRate = epsilon.toString().replace(/,/ig, "")
+console.log(`|> Final gamma ${finalGammaRate} and epsilon ${finalEpsilonRate} `)
+
+const convertedGammaRate = parseInt(finalGammaRate, 2);
+const convertedEpsilonRate = parseInt(finalEpsilonRate, 2);
+console.log(`|> Final converted gamma ${convertedGammaRate} and epsilon ${convertedEpsilonRate} `)
 
 // TODO: Calculate the power consumption thanks to gammaRate and epsilonRate
-// const powerConsumption = parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
-// console.log("powerConsumption", powerConsumption)
+const powerConsumption = convertedGammaRate * convertedEpsilonRate;
+console.log("|> Power consumption", powerConsumption)
 
